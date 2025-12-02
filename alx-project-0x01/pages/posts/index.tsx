@@ -3,7 +3,11 @@ import { PostProps } from '@/interfaces';
 import PostCard from '@/components/common/PostCard';
 import React from 'react';
 
-const Posts: React.FC<PostProps> = ( { posts } ) => {
+interface PostsPageProps {
+    posts: PostProps[];
+}
+
+const Posts: React.FC<PostsPageProps> = ( { posts } ) => {
     console.log(posts);
     return (
         <div className="flex flex-col h-screen">
