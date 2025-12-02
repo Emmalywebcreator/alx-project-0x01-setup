@@ -4,8 +4,8 @@ import { UserProps, UsersPageProps } from '@/interfaces';
 import UserCard from '@/components/common/UserCard';
 
 
-const Users: React.FC<UsersPageProps> = ( { users } ) => {
-    console.log(users);
+const Users: React.FC<UsersPageProps> = ( { posts } ) => {
+    console.log(posts);
   return (
     <div className="flex flex-col h-screen">
       <Header />
@@ -16,7 +16,7 @@ const Users: React.FC<UsersPageProps> = ( { users } ) => {
         </div>
         <div className='grid grid-cols-3 gap-4'>
             {
-                users?.map((user, key) => (
+                posts.map((user, key) => (
                     <UserCard 
                         name={user.name} 
                         username={user.username} 
@@ -42,7 +42,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      users: posts
+      posts: posts
     }
   }
 }
