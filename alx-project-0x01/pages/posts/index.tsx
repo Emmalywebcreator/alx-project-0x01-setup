@@ -1,6 +1,8 @@
 import Header from '@/components/layout/Header';
-import { PostProps } from '@/interfaces';
+import { PostProps, PostData } from '@/interfaces';
 import PostCard from '@/components/common/PostCard';
+import PostModal from '@/components/common/PostModal';
+import { useState } from 'react';
 import React from 'react';
 
 interface PostsPageProps {
@@ -9,13 +11,18 @@ interface PostsPageProps {
 
 const Posts: React.FC<PostsPageProps> = ( { posts } ) => {
     console.log(posts);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [post, setPost] = useState<PostData | null>(null);
+    const handleAddPost = (newPost: PostData) => {
+        setPost({...newPost, id: posts.length + 1 });
+    }
     return (
         <div className="flex flex-col h-screen">
             <Header />
             <main className="p-4">
                 <div className='flex justify-between'>
                     <h1 className='text-2xl font-semibold'>Post Contents</h1>
-                    <button className='bg-gray-700 px-4 py-2 rounded-full text-white'>Add Post</button>
+                    <button onClick={() => setIsModalOpen(true)} className='bg-gray-700 px-4 py-2 rounded-full text-white'>Add Post</button>
                 </div>
                 <div className='grid grid-cols-3 gap-2'>
                     {
@@ -25,6 +32,7 @@ const Posts: React.FC<PostsPageProps> = ( { posts } ) => {
                     }
                 </div>
             </main>
+            {isModalOpen && <PostModal onClose={() => setIsModalOpen(false)} onSubmit={handleAddPost} />}
         </div>
     )
 } 
