@@ -30,7 +30,7 @@ export interface UserProps {
 }
 
 export interface UsersPageProps {
-    posts: UserProps[];
+    users: UserProps[];
 }
 
 export interface PostData {
@@ -43,4 +43,15 @@ export interface PostData {
 export interface PostModalProps {
     onClose: () => void;
     onSubmit: (post: PostData) => void;
+}
+
+export interface UserData {
+    username: string;
+    email: string;
+}
+
+
+export interface UserModalProps {
+    onClose: () => void;
+    onSubmit: (user: UserData) => void;
 }
